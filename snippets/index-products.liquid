@@ -1,0 +1,22 @@
+{% if data.blocks.size > 0 %}
+	{% for block in data.blocks %}
+		{% if data.blocks.size > 1 %}
+			{% if forloop.first %}
+				{% assign product_classes = 'p-t-50 p-b-25' %}
+			{% elsif forloop.last %}	
+				{% assign product_classes = 'p-t-25 p-b-50' %}
+			{% else %}
+				{% assign product_classes = 'p-t-25 p-b-25' %}
+			{% endif %}
+		{% else %}
+			{% assign product_classes = 'p-t-50 p-b-50' %}
+		{% endif %}
+
+		<div class="index-products {{ product_classes }}">
+			{% for product in block.collection.products limit: 10 %}
+			  {% assign hide_product = false %}
+			  {% include "products_slider", products_title: block.collection.title, products_prefix: 'is-frontpage', card_prefix: 'in-frontpage', hide_product: hide_product  %}
+			{% endfor %}
+		</div>
+	{% endfor %}
+{% endif %}

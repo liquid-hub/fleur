@@ -1,0 +1,61 @@
+{% if data.blocks.size > 0 %}
+  <div class="container">
+    <div class="promo-slider-wrapper relative p-b-50">
+      <div class="promo-slider swiper-container">
+        <div class="swiper-wrapper">
+
+          {% for slide in data.blocks %}
+            <div class="promo-slide swiper-slide">
+              {% assign tag = 'div' %}
+              {% assign attr = '' %}
+              {% if slide.link.size > 0 %}
+                {% assign tag = 'a' %}
+                {% assign attr = 'href="' | append: slide.link | append: '"' %}
+              {% endif %}
+
+              <div {{ attr }} class="slide-inner">
+
+                <picture class="promo-image">
+                  <source srcset="{{ slide.image | image_url: 1440, format: 'webp' }}" media="(min-width: 1200px)" type="image/webp">
+                  <source srcset="{{ slide.image | image_url: 1200, format: 'webp' }}" media="(min-width: 1024px)" type="image/webp">
+                  <source srcset="{{ slide.image | image_url: 1024, format: 'webp' }}" media="(min-width: 768px)" type="image/webp">
+                  <source srcset="{{ slide.image | image_url: 768, format: 'webp' }}" media="(min-width: 560px)" type="image/webp">
+                  <source srcset="{{ slide.image | image_url: 1200, format: 'jpg' }}" media="(min-width: 1024px)" type="image/jpg">
+                  <source srcset="{{ slide.image | image_url: 1024, format: 'jpg' }}" media="(min-width: 768px)" type="image/jpg">
+                  <source srcset="{{ slide.image | image_url: 768, format: 'jpg' }}" media="(min-width: 560px)" type="image/jpg">
+                  <img src="{{ slide.image | image_url: 1280 }}">
+                </picture>
+
+                <div class="promo-text absolute content-middle text-center p-t-20 p-b-20 p-l-30 p-r-30 p-t-20-s p-b-50-s p-l-0-s p-r-0-s">
+                  <div>
+                    {% if slide.heading.size > 0 %}
+                      <div class="h2-like fw-700">{{ slide.heading | editable }}</div>
+                    {% endif %}
+
+                    {% if slide.description and slide.description != '' %}
+                      <div class="h3-like m-t-20 m-t-0-lg">{{ slide.description | editable }}</div>
+                    {% endif %}
+
+                    {% if slide.link.size > 0 %}
+                      <div class="promo-link h4-like m-t-30 m-b-10 m-t-10-lg">
+                        <a class="inline-top bttn-reg hover-opacity p-l-20 p-r-20" href="{{ slide.link }}">{{ slide.linktext | editable }}</a>
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="promo-slider-pagination swiper-pagination swiper-pagination-white absolute"></div>
+
+        {% comment %}
+          Если попросят стрелки
+          <div class="promo-slider-prev swiper-button-prev swiper-button-white"></div>
+          <div class="promo-slider-next swiper-button-next swiper-button-white"></div>
+        {% endcomment %}
+      </div>
+    </div>
+  </div>
+{% endif %}

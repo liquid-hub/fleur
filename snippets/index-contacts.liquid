@@ -1,0 +1,26 @@
+<div class="index-contacts pallette_2 p-t-100 p-b-100 p-t-50-m p-b-50-m">
+	<div class="container container-small text-center">
+		<div class="h2-like fw-700 text-uppercase m-t-0 m-b-40 m-b-20-m">{{ messages.page_contacts }}</div>
+		<div class="decor-arrow m-b-40 m-b-20-m"></div>
+
+		<div class="row is-grid flex-center">
+			{% for block in data.blocks %}
+				<div class="cell-4 cell-12-sm m-t-20 m-b-20 hover-contact relative">
+					{% if block.heading.size > 0 %}
+						<div class="h4-like m-b-20">{{ block.heading | editable }}</div>
+					{% endif %}
+					{% if block.image.size > 0 %}
+						<div class="index-contact" style="background-image: url({{ block.image }});"></div>
+					{% endif %}
+					{% if block.link.size > 0 %}
+						<a href="{{ block.link }}">{{ block.linktext | editable }}&nbsp;&nbsp;{% include 'svg' with 'arrow-right' %}</a>
+					{% endif %}		
+
+					{% if block.description.size > 0 %}
+						<div class="index-contact-description absolute transition p-t-15 p-l-15 p-r-15 p-b-15 hide-lg">{{ block.description | editable }}</div>
+					{% endif %}	
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>

@@ -1,0 +1,33 @@
+{% if product.description or account.reviews_enabled? %}
+  <div class="product-description pallette_2 no_bg">
+    <div class="tabs product_tabs js-tabs" data-tabs-container>
+
+      <div class="tabs-head m-b-20" data-tab-control="tabs">
+        {% if product.description %}
+          <div class="tabs-item transition inline-top is-button-active h4-like p-t-10 p-b-10 m-r-20" data-tab-anchor="description">
+            {{ messages.label_description }}
+          </div>
+        {% endif %}
+
+        {% if account.reviews_enabled? %}
+          <div id="review_form" class="tabs-item transition inline-top is-button-active h4-like p-t-10 p-b-10" data-tab-anchor="review_form">
+            {{ messages.label_reviews }} {% if product.reviews_count > 0 %}({{ product.reviews_count }}){% endif %}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="tabs-box" data-tab-box="tabs">
+        {% if account.reviews_enabled? %}
+        <div class="tabs-target" data-tab-target="review_form">
+          {% include "product_reviews" %}
+        </div>
+        {% endif %}
+
+        <div class="tabs-target editor" data-tab-target="description">
+          {{ product.description | editable }}
+        </div>
+      </div>
+
+    </div>
+  </div>
+{% endif %}

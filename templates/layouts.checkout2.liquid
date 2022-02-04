@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html class='{{default_checkout2_layout_class}}' lang='ru' xml:lang='ru' xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+  <meta content='noindex, nofollow' name='robots'>
+  <meta content='width=device-width, initial-scale=1.0 user-scalable=no' name='viewport'>
+
+  <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}">
+
+  <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,500,700&amp;subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+  <title>{% yield 'title' %}</title>
+  {{ 'checkout2' | global_stylesheet_tag }}
+  {% assign custom_checkout_css = 'custom_checkout2.css' | asset_url_if_exists %}
+  {% if custom_checkout_css %}
+  <link href='{{ custom_checkout_css }}' rel='stylesheet'>
+  {% endif %}
+  {% include "styles", is_checkout: true %}
+  {% capture meta_settings_value %}{"feedback_captcha_enabled": {{ settings.feedback_captcha_enabled | default: 'false' }} }{% endcapture %}
+<meta data-config="{{meta_settings_value|escape}}" name="theme-settings" content="">
+
+</head>
+<body class='adaptive template-is-checkout2 not-index-page' data-multi-lang="{{ language.not_default? }}">
+  {% include "header" with "no-basket" %}
+  <div class="container"><div class="b-bottom"></div></div>
+
+  <div class='co-section--checkout_content'>
+    <div class='co-section--checkout_order co-section--checkout_order_sided'>
+      <div class='co-section--checkout_header co-checkout-block--padded'>
+        <h1 class='co-checkout-title co-title co-title--h1 page-title'>
+          {% yield 'title' %}
+        </h1>
+        {% comment %}{% yield 'breadcrumbs' %}{% endcomment %}
+      </div>
+      {% yield 'sidebar' %}
+      {% yield %}
+    </div>
+  </div>
+  {% include "footer" %}
+  {% include "cookie-banner" %}
+  {% include_insales_scripts "common-js@v2" %}
+  {% include "scripts", is_checkout: true %}
+
+</body>
+</html>

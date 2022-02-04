@@ -1,0 +1,318 @@
+{% assign color_bg_1 = settings.color_p1_bg %}
+{% assign color_text_1 = settings.color_p1_text %}
+{% assign color_link_1 = settings.color_p1_link %}
+{% assign color_button_bg_1 = settings.color_p1_button_bg %}
+{% assign color_button_text_1 = settings.color_p1_button_text %}
+{% assign color_special_1 = settings.color_p1_special %}
+{% assign color_special_2_1 = settings.color_p1_special_2 %}
+
+{% assign color_bg_2 = settings.color_p2_bg %}
+{% assign color_text_2 = settings.color_p2_text %}
+{% assign color_link_2 = settings.color_p2_link %}
+{% assign color_button_bg_2 = settings.color_p2_button_bg %}
+{% assign color_button_text_2 = settings.color_p2_button_text %}
+{% assign color_special_2 = settings.color_p2_special %}
+{% assign color_special_2_2 = settings.color_p2_special_2 %}
+
+{% assign color_bg_all = settings.color_bg_all %}
+{% assign color_bg_content = settings.color_bg_content %}
+
+{% assign font_family = settings.font_family %}
+{% assign font_size = settings.font_size %}
+
+:root {
+	--border-radius: 0px;
+	--color_bg: transparent;
+	--color_text: inherit;
+	--color_bg_content:{{ settings.color_bg_content }};
+	--color_bg_all:{{ settings.color_bg_all }};
+}
+
+body{
+	font-family: '{{ settings.font_family }}';
+	font-size: {{ settings.font_size }};
+	color: {{ settings.color_p1_text }};
+  background-color: {{ settings.color_bg_all }};
+  letter-spacing: {{ settings.font_letter_spacing }};
+
+  &:after{
+  	background-color: {{ settings.color_bg_content }};
+  }
+}
+button,
+input,
+optgroup,
+select,
+textarea{
+	font-family: '{{ settings.font_family }}';
+	border-radius: var(--border-radius);
+	background-color: var(--color_bg);
+	color: var(--color_text);
+	letter-spacing: {{ settings.font_letter_spacing }};
+}
+input {
+	&::placeholder {
+		color: var(--color_text);
+	}
+}
+.slct,
+button.option-value{
+	font-size: {{ settings.font_size }};
+}
+.b-bottom{
+	border-bottom: 1px solid {{ settings.color_p1_text }}63;
+}
+.b-top{
+	border-top: 1px solid {{ settings.color_p1_text }}63;
+}
+.b-left{
+	border-left: 1px solid {{ settings.color_p1_text }}63;
+}
+.b-right{
+	border-right: 1px solid {{ settings.color_p1_text }}63;
+}
+.collection-filter{
+	.filter-items-wrapper{
+		border-bottom: 1px solid {{ settings.color_p1_text }}63;
+	}
+}
+.collection-filter{
+	.irs-line{
+		background-color: {{ settings.color_p1_special }}40;
+	}
+	.irs-bar{
+		background-color: {{ settings.color_p1_special }};
+	}
+	.irs-slider.from,
+	.irs-slider.to{
+		background-color: {{ settings.color_p1_special }};
+	}
+}
+.product-info{
+	.product-props{
+		label:before{
+			background-color: {{ settings.color_p1_button_bg }};
+		}
+	}
+}
+.popup-bg,
+.co-overlay{
+	background-color: #000;
+}
+.fancybox-is-open .fancybox-bg,
+.m-overlay{
+	background-color: #000;
+}
+.co-sidebar--menu{
+	border-bottom: 1px solid {{ settings.color_p1_text }}63;
+}
+.co-button--transparent {
+	border: 1px solid {{ settings.color_p1_text }}63;
+}
+.co-sidebar{
+	border-left: 1px solid {{ settings.color_p1_text }}63;
+}
+.co-basket_subtotal-list{
+	border-top: 1px solid {{ settings.color_p1_text }}63;
+	border-bottom: 1px solid {{ settings.color_p1_text }}63;
+}
+.collection-order {
+  option {
+    background-color: {{ settings.color_p2_bg }};
+    color: {{ settings.color_p2_text }};
+  }
+}
+.m-modal-button--checkout,
+.m-modal-button--checkout:hover{
+	background-color: {{ settings.color_p1_button_bg }} !important;
+	color: {{ settings.color_p1_button_text }} !important;
+}
+@media screen and (max-width: 768px){
+	[data-closed-filter].active{
+		background-color: {{ settings.color_p1_bg }};
+	}
+}
+.bttn-reg,
+button.co-button,
+.co-button,
+.picker-button{
+	background-color: {{ settings.color_p1_button_bg }};
+	color: {{ settings.color_p1_button_text }};
+}
+button.co-button{
+	&:hover,
+  &:focus{
+  	background-color: {{ settings.color_p1_button_bg }};
+		color: {{ settings.color_p1_button_text }};
+  	opacity: 0.8;
+  }
+}
+.co-toggable_field-input--checkbox input:checked+span:after{
+	color: {{ settings.color_bg_content }};
+}
+.co-button:focus,
+.picker-button:focus,
+.co-button:hover,
+.picker-button:hover {
+  background-color: {{ settings.color_p1_button_bg }};
+	color: {{ settings.color_p1_button_text }};
+ 	opacity: 0.8;
+}
+
+.slct{
+	&.option-values{
+		border: 1px solid {{ settings.color_p1_button_bg }};
+	}
+}
+button.option-value{
+	border-color: {{ settings.color_p1_button_bg }}6b;
+  color: {{ settings.color_p1_button_bg }};
+
+  &[selected]{
+  	border-color: {{ settings.color_p1_button_bg }};
+  }
+}
+.burger{
+	> div,
+	&:before,
+	&:after{
+		background-color: {{ settings.color_p1_text }};
+	}
+}
+.quantity{
+	.quantity-input{
+		border: 1px solid {{ settings.color_p1_button_bg }};
+	}
+	button, a{
+		&:first-child{
+			border-right: 1px solid {{ settings.color_p1_button_bg }};
+		}
+		&:last-child{
+			border-left: 1px solid {{ settings.color_p1_button_bg }};
+		}
+	}
+}
+
+
+.tt-suggestion:hover {
+	color: {{ settings.color_p1_button_text }};
+	background-color: {{ settings.color_p1_button_bg }};
+}
+
+.tt-dropdown-menu {
+	background-color: {{ settings.color_p1_bg }};
+	color: {{ settings.color_p1_text }};
+}
+
+.m-modal.m-modal--checkout,
+.modal-color,
+.co-modal{
+	background-color: {{ settings.color_p1_bg }};
+	color: {{ settings.color_p1_text }};
+	border: 1px solid {{ settings.color_p1_text }}54;
+	border-width: 1px !important;
+}
+[data-show-products]:before{
+	background-color: {{ settings.color_p1_bg }};
+	border: 1px solid {{ settings.color_p1_text }}54;
+}
+.m-modal-close:before,
+.m-modal-close:after,
+.collection-filter [data-tab-anchor]:before,
+.collection-filter [data-tab-anchor]:after{
+	background-color: {{ settings.color_p1_text }};;
+}
+.co-table{
+	border: 1px solid {{ settings.color_p1_text }};
+}
+.co-table-cell--head,
+.co-table-cell--body{
+	color: {{ settings.color_p1_text }};
+	border-bottom: 1px solid {{ settings.color_p1_text }};
+}
+.about-us .about-us-img:after{
+	background-color: {{ settings.color_p1_special }};
+}
+
+{% for i in (1..2) %}
+
+	{% capture color_bg %}color_p{{ i }}_bg{% endcapture %}
+	{% capture color_text %}color_p{{ i }}_text{% endcapture %}
+	{% capture color_link %}color_p{{ i }}_link{% endcapture %}
+	{% capture color_button_bg %}color_p{{ i }}_button_bg{% endcapture %}
+	{% capture color_button_text %}color_p{{ i }}_button_text{% endcapture %}
+	{% capture color_special %}color_p{{ i }}_special{% endcapture %}
+	{% capture color_special_2 %}color_p{{ i }}_special_2{% endcapture %}
+
+	.pallette_{{ i }}{
+		--color_bg: {{ settings[color_bg] }};
+		--color_text: {{ settings[color_text] }};
+		--color_link: {{ settings[color_link] }};
+		--color_button_bg: {{ settings[color_button_bg] }};
+		--color_button_text: {{ settings[color_button_text] }};
+		--select-arrow: url("data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 129 129' xmlns:xlink='http://www.w3.org/1999/xlink' enable-background='new 0 0 129 129'%3E%3Cg%3E%3Cpath d='m121.3,34.6c-1.6-1.6-4.2-1.6-5.8,0l-51,51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8,0-1.6,1.6-1.6,4.2 0,5.8l53.9,53.9c0.8,0.8 1.8,1.2 2.9,1.2 1,0 2.1-0.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2 0.1-5.8z' fill='{{ settings[color_text] | replace: '#', '%23' }}'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
+		background-color: {{ settings[color_bg] }};
+		color: {{ settings[color_text] }};
+
+		&.gallery-wrapper svg use {
+		  stroke: {{ settings[color_button_bg] }};
+		}
+		.gallery-thumbs-wrap .swiper-button-prev, .gallery-thumbs-wrap .swiper-button-next {
+			background-color: transparent;
+			border-color: {{ settings[color_button_bg] }}50;
+		}
+
+		option {
+			background-color: {{ settings[color_bg] }};
+			color: {{ settings[color_text] }};
+		}
+
+		.c_text{
+			color: {{ settings[color_text] }};
+		}
+		.c_link{
+			color: {{ settings[color_link] }};
+		}
+		.c_button_bg{
+			background-color: {{ settings[color_button_bg] }};
+		}
+		.c_button_text{
+			color: {{ settings[color_button_text] }};
+		}
+		.c_button{
+			background-color: {{ settings[color_button_bg] }};
+			color: {{ settings[color_button_text] }};
+		}
+		.c_special_bg{
+			background-color: {{ settings[color_special] }};
+		}
+		.c_special_2_bg{
+			background-color: {{ settings[color_special_2] }};
+		}
+		.c_special_color{
+			color: {{ settings[color_special] }};
+		}
+		.c_special_2_color{
+			color: {{ settings[color_special_2] }};
+		}
+		.reg_bg{
+			background-color: {{ settings[color_bg] }};
+		}
+		.c_border{
+			border-color: {{ settings[color_bg] }}80;
+		}
+		input[type="text"],
+		input[type="password"],
+		input[type="email"],
+		textarea{
+			border-color: {{ settings[color_text] }};
+			background-color: {{ settings[color_bg] }};
+			color: {{ settings[color_text] }};
+		}
+
+		&.no_bg{
+			background-color: transparent;
+		}
+	}
+
+{% endfor %}

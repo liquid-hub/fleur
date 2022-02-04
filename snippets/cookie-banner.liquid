@@ -1,0 +1,37 @@
+{% if settings.cookie_show %}
+<div class="pallette_2 cookie-banner ">
+	<div class="box-modal" id="boxUserFirstInfo">
+      <div class="row flex-middle">
+        <div class="cell-9 cell-12-md">
+		{{ messages.cookie_text }} <a href="{{ settings.cookie_link }}" style="text-decoration: underline;">{{ messages.cookie_link_text }}</a>
+        </div>
+        <div class="cell-2 push-1 push-0-md cell-12-md m-t-10-md">
+          <div class="box-modal_close bttn-reg hover-opacity p-l-20 p-r-20">{{ messages.cookie_button_text }}</div>
+        </div>
+      </div>
+	</div>
+</div>
+
+<style>
+  .cookie-banner{
+  	padding: 20px;
+    background: var(--color_bg);
+    z-index: 1111;
+    position: fixed;
+    bottom: 0;
+    color: var(--color_text);
+    display: none;
+    width: 100%;
+    -webkit-box-shadow: 0px -1px 23px 2px rgba(0,0,0,0.09);
+    -moz-box-shadow: 0px -1px 23px 2px rgba(0,0,0,0.09);
+    box-shadow: 0px -1px 23px 2px rgba(0,0,0,0.09);
+  }
+	.cookie-banner .bttn-reg {
+  background: var(--color_button_bg);
+  color: var(--color_button_text);
+}
+  .box-modal_close{
+  	width: fit-content;
+  }
+</style>
+{% endif %}

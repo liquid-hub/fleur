@@ -1,0 +1,64 @@
+{% unless article_prefix %}
+  {% assign article_prefix = '' %}
+{% endunless %}
+
+{% if settings.blog_mansonry == 'on' %}
+  {% assign article_preview = article.preview | strip_html %}
+{% else %}
+  {% assign article_preview = article.preview | strip_html | truncatewords: 20 %}
+{% endif %}
+
+<div class="article_preview {{ article_prefix }}">
+  <div class="inner p-l-20 p-r-20 p-b-20">
+
+    <div class="inner-top">
+      {% unless article.image.large_url contains 'no_image' %}
+        <div class="article_preview-image_wrap relative">
+          <a href="{{ article.url }}" {% if settings.blog_mansonry == 'off' %}style="background-image: url({{ article.image.large_url }});"{% endif %}>
+            {% if settings.blog_mansonry == 'on' %}
+              <img class="article_preview-image" src="{{ article.image.large_url }}" alt="{{ article.title }}" />
+            {% endif %}
+          </a>
+        </div>
+      {% endunless %}
+
+      {% if article.tags.size > 0 %}
+        <div class="article_tags m-t-20">
+          {% for tag in article.tags %}
+            <a class="inline-top fw-300 p-r-10 m-b-5" href="{{ tag.url }}">#{{ tag.title }}</a>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <div class="article_preview-inner m-t-20">
+        <div>
+          <a class="h3-like" href="{{ article.url }}">{{ article.title }}</a>
+        </div>
+
+        <div>
+          <a href="{{ article.url }}" class="fw-300"><small>{{ article.created_at | date: "%d" }} {% include "month" , created: article.created_at %} {{ article.created_at | date: "%Y" }}</small></a>
+        </div>
+
+
+        <div class="m-t-20">
+          <a href="{{ article.url }}" class="fw-300">
+            {% if article.has_preview? %}
+              {{ article.preview | editable }}
+            {% else %}
+              {{ article.content | strip_html | truncatewords: 20  }}
+            {% endif %}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="inner-bottom m-t-20">
+      <a class="bttn-underline hover-opacity" href="{{ article.url }}">
+        <span class="inline-middle">{{ messages.button_more }}</span>
+        &nbsp;
+        <span class="transition inline-middle">{% include 'svg' with 'arrow-right' %}</span>
+      </a>
+    </div>
+
+  </div>
+</div>

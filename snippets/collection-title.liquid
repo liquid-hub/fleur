@@ -1,0 +1,18 @@
+<div class="container relative">
+  <div class="row flex-center {% unless collection_image_on == true %}p-t-30{% endunless %} p-b-30">
+    <div class="cell-12">
+      {% if filter.title %}
+        <h1 class="h1-like fw-400 m-t-0 m-b-0">{{ filter.title | editable }}</h1>
+      {% else %}
+        <h1 class="h1-like fw-400 m-t-0 m-b-0">{{ collection.title | editable }}</h1>
+      {% endif %}
+
+      <div>
+        {% capture products_count %}
+        {% include 'declination', items_count: collection.products_count %}
+        {% endcapture %}
+        {{ collection.products_count }} {{ products_count | strip }}
+      </div>
+    </div>
+  </div>
+</div>

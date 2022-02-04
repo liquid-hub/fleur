@@ -1,0 +1,78 @@
+<header class="pallette_1 transition p-t-40 p-b-40 p-t-15-sm p-b-15-sm">
+  <div class="container">
+    <div class="row is-grid flex-middle flex-between">
+      <div class="cell-4 cell-3-sm"> 
+        <a href="#" class="js-open-main-menu" custom-popup-link="mobile-menu"> 
+          <div class="burger">
+            <div></div>
+          </div>
+        </a> 
+      </div>
+
+      <div class="cell-4 cell-6-sm text-center">
+        <a class="inline-middle" href="/" title="{{ account.title }}">
+          {% include 'logotypes' with 'header' %}
+        </a>
+      </div>
+      
+      <div class="cell-4 cell-3-sm">
+        <div class="header-menu-right row flex-middle flex-end">
+          {% if settings.header_search_on == '1' or settings.header_search_on == 'on' %}
+            <div>
+              <a class="search_widget-submit hover-opacity" href="#" custom-popup-link="search-form">
+                <span class="inline-middle">{% include 'svg' with 'icon_search' %}</span>
+              </a>
+            </div>
+          {% endif  %}
+
+          {% if settings.header_cabinet_on == '1' or settings.header_cabinet_on == 'on' %}
+          	{% if account.enable_clients? %}
+              <div class="hide-sm m-l-15">
+                <a class="login-link" href="/client_account/login">
+                  <span class="inline-middle">{% include 'svg' with 'icon_account' %}</span>
+                </a>
+              </div>
+         	  {% endif %}
+          {% endif %}
+
+          {% unless header == 'no-basket' %}
+            <div class="m-l-15">
+              <a class="js-basket hover-opacity" href="#" custom-popup-link="dynamic_basket">
+                <span class="inline-middle">{% include 'svg' with 'icon_cart' %}</span>
+                <!-- <span class="inline-middle hide-m" data-cartman-positions-count></span> -->
+              </a>
+            </div>
+          {% endunless %}
+        </div>
+      </div>
+
+      {% if collections.size > 0 %}
+        <div class="cell-12 hide-sm">
+          <div class="header-menu text-center p-t-40 m-t-40 b-top">
+            <ul class="no-list-style no-pad no-marg">
+              {% for collection in collections %}
+                <li class="inline-middle relative m-l-15 m-r-15">
+                  <a class="bttn-underline show-inline {% if collection.current? %}active{% endif %}" href="{{ collection.url }}">{{ collection.title }}</a> 
+                  {% if collection.subcollections.size > 0 %}
+                    &nbsp;
+                    <span class="subcol-dropdown inline-middle transition">{% include 'svg' with 'arrow-down' %}</span>
+                    <div class="subcol absolute text-left p-t-10">
+                      <ul class="no-list-style p-t-10 p-l-10 p-r-10 p-b-10 no-marg b-top b-left b-right b-bottom">
+                        {% for sub in collection.subcollections %}
+                          <li><a class="bttn-underline {% if sub.current? %}active{% endif %}" href="{{ sub.url }}">{{ sub.title }}</a></li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  {% endif %}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+</header>
+
+<div data-option-variant class="hide">{{ settings.product_variants }}</div>

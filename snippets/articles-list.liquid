@@ -1,0 +1,21 @@
+{% if settings.blog_count.size > 0 %}
+	{% assign blog_count = settings.blog_count %}
+{% else %}
+	{% assign blog_count = 12 %}
+{% endif %}
+
+{% paginate articles by blog_count %}
+<div class="articles-list {% if settings.blog_mansonry != 'on' %}normal-style row is-grid{% endif %}">
+	  {% for article in articles %}
+	    <div class="{% if settings.blog_mansonry != 'on' %}cell-4 cell-6-m cell-12-sm{% endif %} m-b-20">
+	      {% unless settings.blog_mansonry == 'on' %}
+          	{% include 'article_preview' %}
+          {% else %}
+	      	{% include 'article_preview_cover' %}
+          {% endunless %}
+	    </div>
+	  {% endfor %}
+	</div>
+
+	{% include "pagination" %}	
+{% endpaginate %}

@@ -1,0 +1,24 @@
+<div class="m-b-50">
+  {% include "breadcrumb" %}
+</div>
+
+<div class="container m-b-70 pallette_1">
+  <h1 class="h1-like text-center fw-400 m-t-0">{{ page.title }}</h1>
+  {% comment %}
+    Делаем пермалинк страницы вручную
+  {% endcomment %}
+  {% assign page_handle = page.url | split: '/' | last %}
+
+  {% if page_handle == 'favorites' %}
+    {% include "favorite" %}
+  {% endif %}
+  <div class="page-content page-{{ page_handle }}">
+    {{ page.content | editable }}
+  </div>
+  {% if page.url contains '/page/feedback' %}
+    {% unless page.content contains "feedback_form" %}
+      {% include "js-form-feedback" %}
+    {% endunless %}
+  {% endif %}
+
+</div>

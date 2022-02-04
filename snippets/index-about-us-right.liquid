@@ -1,0 +1,68 @@
+{% if data.blocks.size > 0 %}
+	{% for slide in data.blocks %}
+		{% capture block_image %}
+			{% if slide.image.size > 0 %}
+				<div class="cell-5 cell-12-sm flex-first-sm m-b-30-sm">
+					<div class="about-us-img relative">
+						<picture class="promo-image">
+							<source srcset="{{ slide.image | image_url: 600, format: 'webp' }}" media="(min-width: 1200px)" type="image/webp">
+							<source srcset="{{ slide.image | image_url: 500, format: 'webp' }}" media="(min-width: 1024px)" type="image/webp">
+							<source srcset="{{ slide.image | image_url: 600, format: 'webp' }}" media="(min-width: 768px)" type="image/webp">
+							<source srcset="{{ slide.image | image_url: 600, format: 'webp' }}" media="(min-width: 520px)" type="image/webp">
+							<source srcset="{{ slide.image | image_url: 500, format: 'webp' }}" media="(min-width: 320px)" type="image/webp">
+							<source srcset="{{ slide.image | image_url: 500, format: 'jpg' }}" media="(min-width: 1024px)" type="image/jpg">
+							<source srcset="{{ slide.image | image_url: 600, format: 'jpg' }}" media="(min-width: 768px)" type="image/jpg">
+							<source srcset="{{ slide.image | image_url: 600, format: 'jpg' }}" media="(min-width: 520px)" type="image/jpg">
+							<source srcset="{{ slide.image | image_url: 500, format: 'jpg' }}" media="(min-width: 320px)" type="image/jpg">
+							<img src="{{ slide.image | image_url: 600 }}" alt="{{ slide.title | strip_html }}">
+						</picture>
+					</div>
+				</div>
+			{% endif %}
+		{% endcapture %}
+
+		{% capture block_separator %}
+			{% if slide.image.size > 0 %}
+				<div class="cell-1 hide-sm"></div>
+			{% endif %}
+		{% endcapture %}
+
+		{% capture block_text %}
+			<div class="cell-{% if slide.image.size > 0 %}6{% else %}12{% endif %} cell-12-sm">
+				<div class="about-us-text">
+					{% if slide.heading.size > 0 %}
+						<div class="h2-like fw-700 m-t-0 m-b-30">{{ slide.heading | editable }}</div>
+					{% endif %}
+					{% if slide.description.size > 0 %}
+						<div class="m-t-0 m-b-0">{{ slide.description | editable }}</div>
+					{% endif %}
+					{% if slide.link.size > 0 %}
+					<div class="m-t-30">
+						<a class="bttn-reg hover-opacity p-l-20 p-r-20" href="{{ slide.link }}">{{ slide.linktext | editable }}</a>
+					</div>
+					{% endif %}
+				</div>
+			</div>
+		{% endcapture %}
+
+		{% assign mod = forloop.index | modulo: 2 %}
+
+		<div class="about-us pallette_1 p-t-30 p-b-30">
+			<div class="container">
+				<div class="row flex-middle">
+					{% if mod == 0 %}
+                        {{ block_image }}
+                        {{ block_separator }}
+                        {{ block_text }}
+					{% else %}
+                        {{ block_text }}
+                        {{ block_separator }}
+                        {{ block_image }}
+					{% endif %}
+				</div>
+			</div>
+		</div>
+
+		{% unless forloop.last %}<div class="container"><div class="b-bottom"></div></div>{% endunless %}
+	{% endfor %}
+{% endif %}

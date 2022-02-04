@@ -1,0 +1,52 @@
+<footer class="pallette_2 p-t-50">
+  <div class="container">
+    <div class="row is-grid text-center">
+      <div class="cell-12 text-center">
+        <div class="m-b-20">
+          <a href="/" title="{{ account.title }}">
+            {% include 'logotypes' with 'footer' %}
+          </a>
+        </div>
+      </div>
+      <div class="cell-12 text-center m-b-20">
+        {% if linklists[settings.footer_menu_permalink].links.size >0 %}
+          <div class="footer-menu"> 
+            <ul class="no-list-style no-pad no-marg fw-300">
+              {% for link in linklists[settings.footer_menu_permalink].links %}
+                <li class="inline-top m-t-5 m-l-5 m-r-5 m-b-5"><a class="bttn-underline" href="{{ link.url }}">{{ link.title }}</a></li>
+              {% endfor %} 
+            </ul>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="cell-12 m-b-20">
+        {% include "social" %}
+        <div class="cell-12 buy-vars text-center">
+          {% for i in (1..5) %}
+            {% capture image %}buy-var-{{ i }}.png{% endcapture %}
+            {% capture image_on %}buy-var-{{ i }}_on{% endcapture %}
+            {% if settings[image_on] == '1' or settings[image_on] == 'on' %}
+              <span class="inline-middle m-t-10 m-b-10 m-l-10 m-l-0-sm m-r-10-sm"><img src="{{ image | asset_url }}" /></span>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="cell-12 text-center">
+        <div class="m-b-10">
+          <a class="h4-like" href="callto:{{ account.phone }}">{{ account.phone }}</a>
+        </div>
+        <div class="m-b-30">
+          <a class="js-modal bttn-underline bold-border" href="#feedback-modal">{{ messages.t_backcall }}</a> 
+        </div>
+      </div>
+
+      <div class="cell-12 text-center">
+        <div class="b-top p-t-20 p-b-20 m-t-30">
+          <small><a class="bttn-underline" href="https://www.insales.com/" target="_blank">{{ messages.created_by }}</a></small>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

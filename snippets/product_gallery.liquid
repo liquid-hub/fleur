@@ -1,0 +1,22 @@
+{%- comment -%}
+{% assign labels_list = '' %}
+{% if product.properties.stiker %}
+{% for characteristic in product.properties.stiker.characteristics %}
+{% capture main_stiker %}<div class="stiker stiker-{{ characteristic.handle }}">{{ characteristic.title }}</div>{%
+endcapture %}
+{% assign labels_list = labels_list | append: main_stiker %}
+{% assign main_stiker = null %}
+{% endfor %}
+{% endif %}
+{%- endcomment -%}
+
+{% if settings.product_zoom == 'superzoom_square' %}
+    {% capture gallery_settings %}{"type": "MagicZoom", "options": "hint: off;", "trim_img_variants": {{ settings.images_of_options | replace: '1', 'true' | default: 'false' }} }{% endcapture %}
+  {% elsif settings.product_zoom == "superpopup" %}
+    {% capture gallery_settings %}{"type": "fancybox", "trim_img_variants": {{ settings.images_of_options | replace: '1', 'true' | default: 'false' }} }{% endcapture %}
+  {% else %}
+    {% capture gallery_settings %}{"type": "MagicZoom", "options": "hint: off; zoomMode: magnifier;", "trim_img_variants": {{ settings.images_of_options | replace: '1', 'true' | default: 'false' }} }{% endcapture %}
+{% endif %}
+
+<div class="gallery-wrapper pallette_1 no_bg relative" id="gallery-wrapper" style="opacity: 0;" data-gallery-product-id="{{ product.id }}" data-gallery-settings='{{ gallery_settings }}'>
+</div>

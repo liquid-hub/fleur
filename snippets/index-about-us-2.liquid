@@ -1,0 +1,25 @@
+{% if data.blocks.size > 0 %}
+	{% for block in data.blocks %}
+		<div class="promo-2 p-t-100 p-b-100 p-t-20-sm p-b-20-sm" style="background-image: url({{ block.image }});">
+			<div class="container">
+				<div class="row flex-center">
+					<div class="cell-6 cell-12-sm">
+						<div class="promo-2-text pallette_1 text-left p-t-50 p-l-50 p-r-50 p-b-50 p-t-20-sm p-l-20-sm p-r-20-sm p-b-20-sm">
+							{% if block.heading.size > 0 %}
+								<div class="h2-like text-center fw-700 m-b-30">{{ block.heading | editable }}</div>
+							{% endif %}
+							{% if block.description.size > 0 %}
+								<div class="text-justify">{{ block.description | editable }}</div>
+							{% endif %}
+							{% if block.link.size > 0 %}
+								<div class="text-center m-t-30">
+									<a class="bttn-reg hover-opacity p-l-20 p-r-20" href="{{ block.link }}">{{ block.linktext | editable }}</a> 
+								</div>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
+	{% endfor %}
+{% endif %}
